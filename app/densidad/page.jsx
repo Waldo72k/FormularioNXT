@@ -19,6 +19,7 @@ const [subescapular, setSubescapular] = useState('');
 const [suprailiaco, setSuprailiaco] = useState('');
 const [densidad, setDensidad] = useState('')
 const [error, setError] = useState(false);
+const [grasa, setGrasa] = useState('')
 
 
 const handleSubmit = (e) => {
@@ -40,7 +41,8 @@ const handleSubmit = (e) => {
         setDensidad('Valores ingresados no validos')
     }
 
-    
+    const grasat = (495/densidad) - 450;
+    setGrasa(grasat);
 
 }
 
@@ -55,43 +57,43 @@ const handleSubmit = (e) => {
                 <div className={`flex items-center justify-center ${texto.className}`}>
                     <form action=""className=' grid grid-cols-2 gap-4 '>
                         <div>
-                            <label htmlFor="">Genero</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <label>Genero</label><br />
+                            <input type="text" id="genero" value={genero} onChange={(e) => setGenero(e.target.value)}/>
                         </div>
                             
                         <div>
                             <label htmlFor="">Peso</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='peso' value={peso} onChange={(e) => setPeso(e.target.value)}/>
                         </div>
                            
                         <div>
                             <label htmlFor="">Talla</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text"id='Talla' value={talla} onChange={(e) => setTalla(e.target.value)}/>
                         </div>
 
                         <div>
                             <label htmlFor="">Edad</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='Edad' value={edad} onChange={(e) => setEdad(e.target.value)}/>
                         </div>
 
                         <div>
                             <label htmlFor="">Bicipital</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='bicipital' value={bicipital} onChange={(e) => setBicipital(e.target.value)}/>
                         </div>
 
                         <div>
                             <label htmlFor="">Tricipital</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='tricipital' value={tricipital} onChange={(e) => setTricipital(e.target.value)}/>
                         </div>
                         
                         <div className=''>
                             <label htmlFor="">Subescapular</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='subescapular' value={subescapular} onChange={(e) => setSubescapular(e.target.value)}/>
                         </div>
 
                         <div>
                             <label htmlFor="">Suprailiaco</label><br />
-                            <input type="text" name="" id="" className=""/>
+                            <input type="text" id='suprailiaco' value={suprailiaco} onChange={(e) => setSuprailiaco(e.target.value)}/>
                         </div>
                         <div className='bg-[#0077B6] flex justify-center grid-cols-3 col-start-1 col-end-3'>
                         <input type="submit" value="Enviar" onSubmit={handleSubmit}/>
