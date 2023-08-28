@@ -1,15 +1,50 @@
 'use client' //Para especificar a Next que esto es usado por el cliente
 import { Raleway } from 'next/font/google'
 import { Lobster } from 'next/font/google'
+import { parse } from 'postcss'
+import { useState } from 'react'
 
 const texto = Raleway({ subsets: ['latin'], weight: ["500"] })
 const titulo = Lobster({ subsets: ['latin'], weight: ["400"]  })
 
+export default Densidad => {
+
+const [genero, setGenero] = useState('')
+const [peso, setPeso] = useState('')
+const [talla, setTalla] = useState('')
+const [edad, setEdad] = useState('')
+const [bicipital, setBicipital] = useState('')
+const [tricipital, setTricipital] = useState('')
+const [subescapular, setSubescapular] = useState('');
+const [suprailiaco, setSuprailiaco] = useState('');
+const [densidad, setDensidad] = useState('')
+const [error, setError] = useState(false);
+
+
 const handleSubmit = (e) => {
     e.preventDefault();
+
+    if([bicipital.trim(),tricipital.trim(),subescapular.trim(),suprailiaco.trim()].includes('')){
+        console.log('Favor de no dejar campos en blanco');
+        setError(true);
+        return
+    }
+
+    setError(false);
+
+    if(!isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(suprailiaco)){
+        const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(suprailiaco);
+        const densidadt = (1.165 - 0.0744 * Math.log10(X1)).toFixed(4);
+        setDensidad(densidadt);
+    } else {
+        setDensidad('Valores ingresados no validos')
+    }
+
+    
+
 }
 
-export default Densidad => {
+
     return(
         <div className=" bg-[#0077B6] h-screen w-full  flex items-center justify-center">
             
