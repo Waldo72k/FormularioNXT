@@ -15,3 +15,15 @@ Donde x1(milimmetros) es la suma de los 4 pliegues
 Los pliegues son (tricep, bicep, subescapular, suprailiaco)
 
 2.-%Grasa Corporal = (495/Densidad) - 450
+
+//////////////////////////////////////////////
+Nueva formula
+Masa osea:
+((Est^2 (por) diametro femur (por) diametro biestiloideo (por) 400)^0.712) 3.02
+
+Masa Residual :
+H-> 24% del peso kg
+M-> 21% del peso kg
+
+agregar Femur
+agregar Biestiloideo

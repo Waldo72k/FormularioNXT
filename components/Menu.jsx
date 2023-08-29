@@ -17,7 +17,7 @@ const menuRoutes = [
 
 export default function Menu() {
     return( 
-    <div className="w-[20%] bg-[#03045E] text-white h-screen">
+    <div className="w-[20%] bg-primary text-white h-screen">
         <p className=" text-center text-xl">Soy el menu</p>
         <ol>
             {

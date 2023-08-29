@@ -10,11 +10,11 @@ const titulo = Lobster({ subsets: ['latin'], weight: ["400"]  })
 
 export default About => {
     return(
-    <div className=" bg-[#0077B6] h-screen w-full  flex items-center justify-center">
+    <div className=" bg-secondary h-screen w-full  flex items-center justify-center">
 
         {/* <h1 className={`text-white text-center text-3xl my-7 ${raleway.className}`}>Acerca de</h1> */}
 
-        <div className=" h-[90%] w-[95%] bg-[#CAF0F8]">
+        <div className=" h-[90%] w-[95%] bg-terciary">
             <h1 className={` text-center text-5xl my-7 font-black ${titulo.className}`}>
                 Acerca de
             </h1>

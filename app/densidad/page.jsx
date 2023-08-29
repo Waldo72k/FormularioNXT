@@ -1,130 +1,132 @@
-'use client' //Para especificar a Next que esto es usado por el cliente
+'use client'
+
 import { Raleway } from 'next/font/google'
 import { Lobster } from 'next/font/google'
-import { parse } from 'postcss'
-import { useState } from 'react'
+import { useState } from "react"
 
-const texto = Raleway({ subsets: ['latin'], weight: ["500"] })
-const titulo = Lobster({ subsets: ['latin'], weight: ["400"]  })
+const texto = Lobster({ subsets: ['latin'], weight: '400' })
+const titulo = Raleway({ subsets: ['latin'], weight: "400" })
 
-export default Densidad => {
+export default function Densidad() {
 
-const [genero, setGenero] = useState('')
-const [peso, setPeso] = useState('')
-const [talla, setTalla] = useState('')
-const [edad, setEdad] = useState('')
-const [bicipital, setBicipital] = useState('')
-const [tricipital, setTricipital] = useState('')
-const [subescapular, setSubescapular] = useState('');
-const [suprailiaco, setSuprailiaco] = useState('');
-const [densidad, setDensidad] = useState('')
-const [error, setError] = useState(false);
-const [grasa, setGrasa] = useState('')
+    const [genero, setGenero] = useState('');
+    const [peso, setPeso] = useState('');
+    const [talla, setTalla] = useState('');
+    const [edad, setEdad] = useState('');
+    const [bicipital, setBicipital] = useState('');
+    const [tricipital, setTricipital] = useState('');
+    const [subescapular, setSubescapular] = useState('');
+    const [supraileaco, setSupraileaco] = useState('');
+    const [densidad, setDensidad] = useState('');
+    const [grasa, setGrasaCorporal] = useState('');
+    const [femur, setFemur] = useState('');
+    const [biestiloideo, setBiestiloideo] = useState('');
+    const [osea, setOsea] = useState('');
+    const [residual, setResidual] = useState('');
+    const [error, setError] = useState(false);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if ([bicipital.trim(), tricipital.trim(), subescapular.trim(), supraileaco.trim()].includes('')) {
+            console.log('Existen campos faltantes');
+            setError(true);
+            return
+        }
+        setError(false);
 
-const handleSubmit = (e) => {
-    e.preventDefault();
+        if (genero === 'hombre' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
+            const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(supraileaco);
+            const densidadR = (1.1765 - 0.0744 * Math.log10(X1)).toFixed(4);
+            setDensidad(densidadR);
+            const grasa_corporalR = ((495 / densidadR) - 450).toFixed(4);
+            setGrasaCorporal(grasa_corporalR);
+            const oseaR = ((((parseFloat(talla) ** 2)*(femur)*(biestiloideo)*400)**0.712)*3.02).toFixed(4);
+            setOsea(oseaR);
+            const mres = (peso * 0.24);
+            setResidual(mres);
+            console.log(oseaR);
+            console.log(osea);
+        } else if (genero === 'mujer' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
+            const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(supraileaco);
+            const densidadR = (1.1567 - 0.0717 * Math.log10(X1)).toFixed(4);
+            setDensidad(densidadR);
+            const grasa_corporalR = ((495 / densidadR) - 450).toFixed(4);
+            setGrasaCorporal(grasa_corporalR);
+            const oseaR = ((((parseFloat(talla) ** 2)*(femur)*(biestiloideo)*400)**0.712)*3.02).toFixed(4);
+            setOsea(oseaR);
+            const mres = (peso * 0.21);
+            setResidual(mres);
+        }
+        else {
+            setDensidad("Valores ingresados no validos.");
+        }
+    };
 
-    if([bicipital.trim(),tricipital.trim(),subescapular.trim(),suprailiaco.trim()].includes('')){
-        console.log('Favor de no dejar campos en blanco');
-        setError(true);
-        return
-    }
+    return (
+        <div className={`${titulo.className} flex justify-center p-[20px] w-full bg-secondary`}>
+            <div className=' items-center w-[50%] justify-center bg-terciary rounded-lg'>
+                <h1 className={`${texto.className} my-10 mb-10 text-center text-5xl text-black mt-10`}>Composicion Corporal</h1>
+                <form onSubmit={handleSubmit} className={`${titulo.className} text-center grid grid-cols-2 gap-4`}>
 
-    setError(false);
-
-    if(!isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(suprailiaco)){
-        const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(suprailiaco);
-        const densidadt = (1.165 - 0.0744 * Math.log10(X1)).toFixed(4);
-        setDensidad(densidadt);
-    } else {
-        setDensidad('Valores ingresados no validos')
-    }
-
-    const grasat = (495/densidad) - 450;
-    setGrasa(grasat);
-
-}
-
-
-    return(
-        <div className=" bg-[#0077B6] h-screen w-full  flex items-center justify-center">
-            
-            <div className=" h-[90%] w-[50%] bg-[#CAF0F8]">
-                <div>
-                    <h1 className={` text-center text-5xl my-7 font-black ${titulo.className}`}>Composicion corporal</h1>
-                </div>
-                <div className={`flex items-center justify-center ${texto.className}`}>
-                    <form action=""className=' grid grid-cols-2 gap-4 '>
-                        <div>
-                            <label>Genero</label><br />
-                            <input type="text" id="genero" value={genero} onChange={(e) => setGenero(e.target.value)}/>
-                        </div>
-                            
-                        <div>
-                            <label htmlFor="">Peso</label><br />
-                            <input type="text" id='peso' value={peso} onChange={(e) => setPeso(e.target.value)}/>
-                        </div>
-                           
-                        <div>
-                            <label htmlFor="">Talla</label><br />
-                            <input type="text"id='Talla' value={talla} onChange={(e) => setTalla(e.target.value)}/>
-                        </div>
-
-                        <div>
-                            <label htmlFor="">Edad</label><br />
-                            <input type="text" id='Edad' value={edad} onChange={(e) => setEdad(e.target.value)}/>
-                        </div>
-
-                        <div>
-                            <label htmlFor="">Bicipital</label><br />
-                            <input type="text" id='bicipital' value={bicipital} onChange={(e) => setBicipital(e.target.value)}/>
-                        </div>
-
-                        <div>
-                            <label htmlFor="">Tricipital</label><br />
-                            <input type="text" id='tricipital' value={tricipital} onChange={(e) => setTricipital(e.target.value)}/>
-                        </div>
-                        
-                        <div className=''>
-                            <label htmlFor="">Subescapular</label><br />
-                            <input type="text" id='subescapular' value={subescapular} onChange={(e) => setSubescapular(e.target.value)}/>
-                        </div>
-
-                        <div>
-                            <label htmlFor="">Suprailiaco</label><br />
-                            <input type="text" id='suprailiaco' value={suprailiaco} onChange={(e) => setSuprailiaco(e.target.value)}/>
-                        </div>
-                        <div className='bg-[#0077B6] flex justify-center grid-cols-3 col-start-1 col-end-3'>
-                        <input type="submit" value="Enviar" onSubmit={handleSubmit}/>
-                        </div>
-                    </form>
-                    
-                {/* <form>
-                    
-                    <div className=' col-start-1 col-span-2'>
-                        
+                    <div>
+                        <label className="text-black block mb-2 mt-5">Genero</label>
+                        <select id="genero" value={genero} onChange={(e) => setGenero(e.target.value)} className="w-44">
+                            <option value=""></option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </select>
                     </div>
-                    <div className=' col-span-1'>
-                        
+                    <div>
+                        <label className="block mb-2 mt-5">Peso</label>
+                        <input type="text" id="peso" value={peso} onChange={(e) => setPeso(e.target.value)} />
                     </div>
-                    
-                    
-                    <br />
-                    <label htmlFor="">Bicipital</label><br />
-                    <input type="text" name="" id="" className=""/>
-                    <br />
-                    <label htmlFor="">Tricipital</label><br />
-                    <input type="text" name="" id="" className=""/>
-                    <br />
-                    <label htmlFor="">Subescapular</label><br />
-                    <input type="text" name="" id="" className=""/>
-                    <br />
-                    <label htmlFor="">Suprailiaco</label><br />
-                    <input type="text" name="" id="" className=""/>
-                    <br />
-                    <input type="submit" value="enviar" onSubmit={handleSubmit}/>
-                </form> */}
+                    <div>
+                        <label className="block mb-2 mt-5">Talla</label>
+                        <input type="text" id="talla" value={talla} onChange={(e) => setTalla(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Edad</label>
+                        <input type="text" id="edad" value={edad} onChange={(e) => setEdad(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Bicipital</label>
+                        <input type="text" id="bicipital" value={bicipital} onChange={(e) => setBicipital(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Tricipital</label>
+                        <input type="text" id="tricipital" value={tricipital} onChange={(e) => setTricipital(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Subescapular</label>
+                        <input type="text" id="subescapular" value={subescapular} onChange={(e) => setSubescapular(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Supraileaco</label>
+                        <input type="text" id="supraileaco" value={supraileaco} onChange={(e) => setSupraileaco(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Femur</label>
+                        <input type="text" id="supraileaco" value={femur} onChange={(e) => setFemur(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className="block mb-2 mt-5">Biestiloideo</label>
+                        <input type="text" id="supraileaco" value={biestiloideo} onChange={(e) => setBiestiloideo(e.target.value)} />
+                    </div>
+                    <input value="Enviar" type="submit" className=" w-80 mt-32 rounded-md p-2 uppercase bg-primary border-primary hover:bg-white cursor-pointer text-white hover:text-black ml-56" />
+                </form>
+                <div className={`${titulo.className} w-full text-center bg-terciary`}>
+                    <div className='mt-10'>
+                        {densidad && <p>Densidad: {densidad} mm</p>}
+                    </div>
+                    <div>
+                        {grasa && <p>Grasa Corporal: {grasa}%</p>}
+                    </div>
+                    <div>
+                        {osea && <p>Masa Osea: {osea}kg</p>}
+                    </div>
+                    <div>
+                        {residual && <p>Masa Residual: {residual}kg</p>}
+                    </div>
                 </div>
             </div>
         </div>
