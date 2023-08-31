@@ -23,6 +23,11 @@ export default function Densidad() {
     const [biestiloideo, setBiestiloideo] = useState('');
     const [osea, setOsea] = useState('');
     const [residual, setResidual] = useState('');
+    const [grasamasa, setGrasamasa] = useState('');
+    const [porcentajeosea, setPorcentajeosea] = useState('');
+    const [porcentajeresidual, setPorcentajeresidual] = useState('');
+    const [porcentajemuscular, setPorcentajemuscular] = useState('');
+    const [masamuscular, setMasamuscular] = useState('');
     const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
@@ -40,8 +45,11 @@ export default function Densidad() {
             setDensidad(densidadR);
             const grasa_corporalR = ((495 / densidadR) - 450).toFixed(4);
             setGrasaCorporal(grasa_corporalR);
-            const oseaR = ((((parseFloat(talla) ** 2)*(femur)*(biestiloideo)*400)**0.712)*3.02).toFixed(4);
-            setOsea(oseaR);
+            const talla2 = parseFloat(talla) / 100;
+            const femur2 = femur /100;
+            const biestiloideo2 = biestiloideo /100;
+
+            const oseaR = ((((talla2** 2) * femur2 * biestiloideo2 * 400)** 0.712)*3.02).toFixed(4);
             const mres = (peso * 0.24);
             setResidual(mres);
             console.log(oseaR);
@@ -50,12 +58,44 @@ export default function Densidad() {
             const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(supraileaco);
             const densidadR = (1.1567 - 0.0717 * Math.log10(X1)).toFixed(4);
             setDensidad(densidadR);
-            const grasa_corporalR = ((495 / densidadR) - 450).toFixed(4);
+            const grasa_corporalR = ((495 / densidadR) - 450).toFixed(2);
             setGrasaCorporal(grasa_corporalR);
-            const oseaR = ((((parseFloat(talla) ** 2)*(femur)*(biestiloideo)*400)**0.712)*3.02).toFixed(4);
+            // console.log(grasa_corporalR);
+            //conversion para sacar grasa masa
+            const grasaCorpo = grasa_corporalR / 100;
+            // console.log(grasaCorpo);
+            const grasaM = (peso * (grasa_corporalR/100)).toFixed(4);
+            // console.log(grasaM);
+            setGrasamasa(grasaM);
+            //const oseaR = ((((parseFloat(talla) ** 2) * femur * biestiloideo*400) ** 0.712)*3.02).toFixed(4);
+            const talla2 = parseFloat(talla) / 100;
+            const femur2 = femur /100;
+            const biestiloideo2 = biestiloideo /100;
+
+            const oseaR = ((((talla2** 2) * femur2 * biestiloideo2 * 400)** 0.712)*3.02).toFixed(4);
+            // const oseaR2 = oseaR / 100;
             setOsea(oseaR);
             const mres = (peso * 0.21);
             setResidual(mres);
+            //porcentaje de osea
+            const porcentajeosea2 = ((oseaR / peso) * 100).toFixed(2);
+            setPorcentajeosea(porcentajeosea2);
+            // console.log(porcentajeosea2);
+            //Porcentaje de Residual
+            const porcentajeresidual2 = ((mres / peso) * 100).toFixed(2);
+            console.log(porcentajeresidual2);
+            setPorcentajeresidual(porcentajeresidual2);
+            
+            //Porcentaje Masa muscular
+            const porcentajemuscular2 =100 - (parseFloat(grasa_corporalR) + parseFloat(porcentajeosea2) + parseFloat(porcentajeresidual2));
+            // console.log(porcentajemuscular);
+            setPorcentajemuscular(porcentajemuscular2);
+
+            //Masa muscular
+            const masamuscular2 = parseFloat(peso) * (porcentajemuscular2 / 100);
+            console.log(masamuscular2);
+            setMasamuscular(masamuscular2);
+
         }
         else {
             setDensidad("Valores ingresados no validos.");
@@ -114,19 +154,55 @@ export default function Densidad() {
                     </div>
                     <input value="Enviar" type="submit" className=" w-80 mt-32 rounded-md p-2 uppercase bg-primary border-primary hover:bg-white cursor-pointer text-white hover:text-black ml-56" />
                 </form>
-                <div className={`${titulo.className} w-full text-center bg-terciary`}>
-                    <div className='mt-10'>
-                        {densidad && <p>Densidad: {densidad} mm</p>}
+                <div className='flex justify-center'>
+                <div className={`${titulo.className} border-2 border-terciary border-solid bg-primary text-white w-full text-center grid grid-cols-3 mt-10`}>
+                    <div className=' text-xl border-2 border-terciary border-solid'>
+                        <p>Componente</p>
                     </div>
-                    <div>
-                        {grasa && <p>Grasa Corporal: {grasa}%</p>}
+                    <div className='text-xl border-2 border-terciary border-solid'>
+                        <p>%</p>
                     </div>
-                    <div>
-                        {osea && <p>Masa Osea: {osea}kg</p>}
+                    <div className='text-xl border-2 border-terciary border-solid'>
+                        <p>kg</p>
                     </div>
-                    <div>
-                        {residual && <p>Masa Residual: {residual}kg</p>}
+                    <div className='border-2 border-terciary border-solid'>
+                        <p>Masa Grasa</p>
                     </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {grasa && <p>{grasa}%</p>}
+                    </div >
+                    <div className='border-2 border-terciary border-solid'>
+                        {grasamasa && <p>{grasamasa}</p>}
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        <p>Masa Osea</p>
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {porcentajeosea && <p>{porcentajeosea}%</p>}
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {osea && <p>{osea}</p>}
+                    </div>
+                    
+                    <div className='border-2 border-terciary border-solid'>
+                        <p>Masa Residual</p>
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {porcentajeresidual && <p>{porcentajeresidual}%</p>}
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {residual && <p>{residual}</p>}
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        <p>Masa Muscular</p>
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {porcentajemuscular && <p>{porcentajemuscular}%</p>}
+                    </div>
+                    <div className='border-2 border-terciary border-solid'>
+                        {masamuscular && <p>{masamuscular}</p>}
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
