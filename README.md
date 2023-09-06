@@ -1,29 +1,24 @@
-para crear este proyecto
+####Practica 1 del formulario
 
-npx create-next-app@latest
+En esta practica he realizado la creacion de un formulario con una navegacion adequada a la interfaz grafica,
+en esta se puede navegar faclmente mediante el Menu de la izquierda,
 
-En densidad, necesitamos:
-1.-Calcular densidad
+#Ventana HOME
 
-Hombre -> Densidad = 1.1765 - 0.0744(Log X1)
-Mujer -> Densidad = 1.1567 - 0.0717(Log X1)
+En la ventana Home se tiene solamente un texto HOME
 
-Log = Logaritmo base 10
+#Ventana Acerca de
 
-Donde x1(milimmetros) es la suma de los 4 pliegues
+En esta se encuentra informacion respecto a mi emrpesa Moistened, la cual es de la vanguardia de riego en la industria
+agroalimentaria
 
-Los pliegues son (tricep, bicep, subescapular, suprailiaco)
+#Ventana Composicion corporal
 
-2.-%Grasa Corporal = (495/Densidad) - 450
+En esta se encuentra un formulario que te aydua a calcular la composicion corporal en los tipos de masa de tu cuerpo
+(masa grasa, osea, residual y corporal)
 
-//////////////////////////////////////////////
-Nueva formula
-Masa osea:
-((Est^2 (por) diametro femur (por) diametro biestiloideo (por) 400)^0.712) 3.02
+###Instalacion
 
-Masa Residual :
-H-> 24% del peso kg
-M-> 21% del peso kg
+Para instalar y correr este programa es necesario el contar con Node.js y Tailwind
 
-agregar Femur
-agregar Biestiloideo
+Se descargo la dependencia de chartjs, debido a que se necesita para la creacion de la grafica.
