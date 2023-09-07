@@ -51,3 +51,7 @@ Después ve al directorio del proyecto con `cd dashboard` (o el nombre que le ha
 Ahora instala las dependencias necesarias, con `npm install`
 
 Finalmente solo necesitas iniciar la aplicación con `npm run dev`
+
+## Deploy en Vercel
+
+https://formulario-nxt.vercel.app/
