@@ -38,7 +38,7 @@ En esta se encuentra un formulario que te ayuda a calcular la composición corpo
 (masa grasa, ósea, residual y corporal)
 
 Esta hace la llamada de los componentes Font, Form y Chart; esto para construirse.
-Al momento que se ingresan los valores solicitados y se presiona Enviar, se pondrán los valores en la tabla y en la gráfica
+Al momento que se ingresan los valores solicitados y se presiona Enviar, se pondrán los valores en la tabla y en la gráfica.
 
 ![Composición corporal](https://imgur.com/eNS3xtT.png)
 
