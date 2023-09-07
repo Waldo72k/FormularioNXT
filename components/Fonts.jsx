@@ -1,4 +1,3 @@
-// fontImports.jsx
 import { Raleway } from 'next/font/google';
 import { Lobster } from 'next/font/google';
 

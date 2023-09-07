@@ -3,47 +3,47 @@ import { titulo, texto } from './Fonts';
 import { Chart } from 'chart.js/auto';
 
 export const Form = () => {   
-    let myChart = null;
+    let myChart = '';
     
-    const [densidad, setDensidad] = useState(null);
+    const [densidad, setDensidad] = useState('');
 
     const [percentages, setPercentages] = useState({
-        grasa : null,
-        porcentajeosea : null,
-        porcentajeresidual : null,
-        porcentajemuscular : null
+        grasa : '',
+        porcentajeosea : '',
+        porcentajeresidual : '',
+        porcentajemuscular : ''
     });
 
     const [weight, setWeight] = useState({
-        grasamasa: null,
-        osea: null,
-        residual: null,
-        masamuscular: null
+        grasamasa: '',
+        osea: '',
+        residual: '',
+        masamuscular: ''
     });
 
     const [datas, setDatas] = useState({
-        genero: null,
-        peso: null,
-        talla: null,
-        edad: null,
-        bicipital: null,
-        tricipital: null,
-        subescapular: null,
-        supraileaco: null,
-        femur: null,
-        biestiloideo: null
+        genero: '',
+        peso: '',
+        talla: '',
+        edad: '',
+        bicipital: '',
+        tricipital: '',
+        subescapular: '',
+        supraileaco: '',
+        femur: '',
+        biestiloideo: ''
     })
 
-    const [genero, setGenero] = useState(null);
-    const [peso, setPeso] = useState(null);
-    const [talla, setTalla] = useState(null);
-    const [edad, setEdad] = useState(null);
-    const [bicipital, setBicipital] = useState(null);
-    const [tricipital, setTricipital] = useState(null);
-    const [subescapular, setSubescapular] = useState(null);
-    const [supraileaco, setSupraileaco] = useState(null);
-    const [femur, setFemur] = useState(null);
-    const [biestiloideo, setBiestiloideo] = useState(null);
+    const [genero, setGenero] = useState('');
+    const [peso, setPeso] = useState('');
+    const [talla, setTalla] = useState('');
+    const [edad, setEdad] = useState('');
+    const [bicipital, setBicipital] = useState('');
+    const [tricipital, setTricipital] = useState('');
+    const [subescapular, setSubescapular] = useState('');
+    const [supraileaco, setSupraileaco] = useState('');
+    const [femur, setFemur] = useState('');
+    const [biestiloideo, setBiestiloideo] = useState('');
     const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
@@ -305,8 +305,8 @@ return(
                 </div>
                 </div>
             </div>
-            <div className=' bg-terciary h-[45%]'>
-                <h1 className={`${texto.className} my-10 mb-10 text-center text-5xl text-black mt-7`}>Tabla</h1>
+            <div className=' bg-terciary h-[45%] ml-10 rounded-lg'>
+                <h1 className={`${texto.className} my-10 mb-10 text-center text-5xl text-black mt-7`}>Grafica</h1>
                 <div>
                 <canvas id="myChart"></canvas>
                 </div>

@@ -1,24 +1,53 @@
-####Practica 1 del formulario
+#### Practica 1 Dashboard
 
-En esta practica he realizado la creacion de un formulario con una navegacion adequada a la interfaz grafica,
-en esta se puede navegar faclmente mediante el Menu de la izquierda,
+# Autor: Cisneros Torres Alberto Oswaldo
 
-#Ventana HOME
+En esta práctica he realizado la creación de un formulario con una navegación adecuada a la interfaz gráfica,
+en esta se puede navegar fácilmente mediante el Menú de la izquierda,
 
-En la ventana Home se tiene solamente un texto HOME
+## Tecnologías utilizadas
 
-#Ventana Acerca de
+- Node
 
-En esta se encuentra informacion respecto a mi emrpesa Moistened, la cual es de la vanguardia de riego en la industria
+- Next.js
+
+- React
+
+- TailwindCSS
+
+- Chart.js
+
+## Vistas
+
+# Ventana Inicio
+
+En la ventana inicio se tiene solamente un texto HOME
+
+![Inicio](https://imgur.com/VbhffFs)
+
+# Ventana Acerca de
+
+En esta se encuentra información respecto a mi empresa Moistened, la cual es de la vanguardia de riego en la industria
 agroalimentaria
 
-#Ventana Composicion corporal
+![Acerca de](https://imgur.com/AlqWssB)
 
-En esta se encuentra un formulario que te aydua a calcular la composicion corporal en los tipos de masa de tu cuerpo
-(masa grasa, osea, residual y corporal)
+# Ventana Composición corporal
 
-###Instalacion
+En esta se encuentra un formulario que te ayuda a calcular la composición corporal en los tipos de masa de tu cuerpo
+(masa grasa, ósea, residual y corporal)
 
-Para instalar y correr este programa es necesario el contar con Node.js y Tailwind
+Esta hace la llamada de los componentes Font, Form y Chart; esto para construirse.
+Al momento que se ingresan los valores solicitados y se presiona Enviar, se pondrán los valores en la tabla y en la gráfica
 
-Se descargo la dependencia de chartjs, debido a que se necesita para la creacion de la grafica.
+![Composición corporal](https://imgur.com/SSb9tNF)
+
+## Pasos para realizar la instalación
+
+Primero clona el repositorio de este proyecto utilizando `git clone https://github.com/Waldo72k/FormularioNXT`
+
+Después ve al directorio del proyecto con `cd dashboard` (o el nombre que le hayas colocado)
+
+Ahora instala las dependencias necesarias, con `npm install`
+
+Finalmente solo necesitas iniciar la aplicación con `npm run dev`
