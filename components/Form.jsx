@@ -246,7 +246,7 @@ return(
                     <div className=' text-xl border-2 border-terciary border-solid'>
                         <p>Componente</p>
                     </div>
-                    <div className='text-xl border-2 border-terciary border-solid'>
+                    <div className='text-xl border-2 border-terciary border-solid '>
                         <p>%</p>
                     </div>
                     <div className='text-xl border-2 border-terciary border-solid'>
