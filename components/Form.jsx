@@ -8,36 +8,23 @@ export const Form = () => {
     const [densidad, setDensidad] = useState('');
 
     const [percentages, setPercentages] = useState({
-        grasa : '',
-        porcentajeosea : '',
-        porcentajeresidual : '',
-        porcentajemuscular : ''
+        fat : '',
+        bonepercent : '',
+        residualpercent : '',
+        muscularpercent : ''
     });
 
     const [weight, setWeight] = useState({
-        grasamasa: '',
-        osea: '',
+        fatmass: '',
+        bones: '',
         residual: '',
-        masamuscular: ''
+        muscular: ''
     });
 
-    const [datas, setDatas] = useState({
-        genero: '',
-        peso: '',
-        talla: '',
-        edad: '',
-        bicipital: '',
-        tricipital: '',
-        subescapular: '',
-        supraileaco: '',
-        femur: '',
-        biestiloideo: ''
-    })
-
-    const [genero, setGenero] = useState('');
-    const [peso, setPeso] = useState('');
-    const [talla, setTalla] = useState('');
-    const [edad, setEdad] = useState('');
+    const [gender, setGender] = useState('');
+    const [wight, setWight] = useState('');
+    const [size, setSize] = useState('');
+    const [age, setAge] = useState('');
     const [bicipital, setBicipital] = useState('');
     const [tricipital, setTricipital] = useState('');
     const [subescapular, setSubescapular] = useState('');
@@ -55,46 +42,46 @@ export const Form = () => {
         }
         setError(false);
 
-        if (genero === 'hombre' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
+        if (gender === 'hombre' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
             const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(supraileaco);
             const densidadR = (1.1765 - 0.0744 * Math.log10(X1)).toFixed(4);
             setDensidad(densidadR);
             const grasa_corporalR = ((495 / densidadR) - 450).toFixed(4);
-            const grasaM = (peso * (grasa_corporalR/100)).toFixed(4);
-            const talla2 = parseFloat(talla) / 100;
+            const grasaM = (wight * (grasa_corporalR/100)).toFixed(4);
+            const talla2 = parseFloat(size) / 100;
             const femur2 = femur /100;
             const biestiloideo2 = biestiloideo /100;
 
             const oseaR = ((((talla2** 2) * femur2 * biestiloideo2 * 400)** 0.712)*3.02).toFixed(4);
-            const mres = (peso * 0.24);
+            const mres = (wight * 0.24);
 
             //porcentaje de osea
-            const porcentajeosea2 = ((oseaR / peso) * 100).toFixed(2);
+            const porcentajeosea2 = ((oseaR / wight) * 100).toFixed(2);
             
             //Porcentaje de Residual
-            const porcentajeresidual2 = ((mres / peso) * 100).toFixed(2);
+            const porcentajeresidual2 = ((mres / wight) * 100).toFixed(2);
             
             //Porcentaje Masa muscular
             const porcentajemuscular2 =100 - (parseFloat(grasa_corporalR) + parseFloat(porcentajeosea2) + parseFloat(porcentajeresidual2));
 
             //Masa muscular
-            const masamuscular2 = parseFloat(peso) * (porcentajemuscular2 / 100);
+            const masamuscular2 = parseFloat(wight) * (porcentajemuscular2 / 100);
 
              //SetPorcentajes
              setPercentages((prevValues) => ({
                 ...prevValues,
-                grasa : grasa_corporalR,
-                porcentajeosea : porcentajeosea2,
-                porcentajeresidual : porcentajeresidual2,
-                porcentajemuscular : porcentajemuscular2
+                fat : grasa_corporalR,
+                bonepercent : porcentajeosea2,
+                residualpercent : porcentajeresidual2,
+                muscularpercent : porcentajemuscular2
             }));
             //SetPesos
             setWeight((prevValues) => ({
                 ...prevValues,
-                grasamasa : grasaM,
-                osea : oseaR,
+                fatmass : grasaM,
+                bones : oseaR,
                 residual : mres,
-                masamuscular : masamuscular2
+                muscular : masamuscular2
             }));
 
             //Lo que me crea la chart
@@ -121,49 +108,49 @@ export const Form = () => {
                   }
                 );
               })();
-        } else if (genero === 'mujer' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
+        } else if (gender === 'mujer' && !isNaN(bicipital) && !isNaN(tricipital) && !isNaN(subescapular) && !isNaN(supraileaco)) {
             const X1 = parseFloat(bicipital) + parseFloat(tricipital) + parseFloat(subescapular) + parseFloat(supraileaco);
             const densidadR = (1.1567 - 0.0717 * Math.log10(X1)).toFixed(4);
             setDensidad(densidadR);
             const grasa_corporalR = ((495 / densidadR) - 450).toFixed(2);
-            const grasaM = (peso * (grasa_corporalR/100)).toFixed(4);
+            const grasaM = (wight * (grasa_corporalR/100)).toFixed(4);
 
             //Sacar Osea
-            const talla2 = parseFloat(talla) / 100;
+            const talla2 = parseFloat(size) / 100;
             const femur2 = femur /100;
             const biestiloideo2 = biestiloideo /100;
             const oseaR = ((((talla2** 2) * femur2 * biestiloideo2 * 400)** 0.712)*3.02).toFixed(4);
 
             //Masa Residual
-            const mres = (peso * 0.21);
+            const mres = (wight * 0.21);
 
             //porcentaje de osea
-            const porcentajeosea2 = ((oseaR / peso) * 100).toFixed(2);
+            const porcentajeosea2 = ((oseaR / wight) * 100).toFixed(2);
 
             //Porcentaje de Residual
-            const porcentajeresidual2 = ((mres / peso) * 100).toFixed(2);
+            const porcentajeresidual2 = ((mres / wight) * 100).toFixed(2);
 
             //Porcentaje Masa muscular
             const porcentajemuscular2 =100 - (parseFloat(grasa_corporalR) + parseFloat(porcentajeosea2) + parseFloat(porcentajeresidual2));
 
             //Masa muscular
-            const masamuscular2 = parseFloat(peso) * (porcentajemuscular2 / 100);
+            const masamuscular2 = parseFloat(wight) * (porcentajemuscular2 / 100);
 
             //SetPorcentajes
             setPercentages((prevValues) => ({
                 ...prevValues,
-                grasa : grasa_corporalR,
-                porcentajeosea : porcentajeosea2,
-                porcentajeresidual : porcentajeresidual2,
-                porcentajemuscular : porcentajemuscular2
+                fat : grasa_corporalR,
+                bonepercent : porcentajeosea2,
+                residualpercent : porcentajeresidual2,
+                muscularpercent : porcentajemuscular2
             }));
             //SetPesos
             setWeight((prevValues) => ({
                 ...prevValues,
-                grasamasa : grasaM,
-                osea : oseaR,
+                fatmass : grasaM,
+                bones : oseaR,
                 residual : mres,
-                masamuscular : masamuscular2
+                muscular : masamuscular2
             }));
 
             
@@ -210,7 +197,7 @@ return(
 
                     <div>
                         <label className="text-black block mb-2 mt-5">Genero</label>
-                        <select id="genero" value={genero} onChange={(e) => setGenero(e.target.value)} className="w-44">
+                        <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)} className="w-44">
                             <option value=""></option>
                             <option value="hombre">Hombre</option>
                             <option value="mujer">Mujer</option>
@@ -218,15 +205,15 @@ return(
                     </div>
                     <div>
                         <label className="block mb-2 mt-5">Peso</label>
-                        <input type="text" id="peso" value={peso} onChange={(e) => setPeso(e.target.value)} />
+                        <input type="text" id="peso" value={wight} onChange={(e) => setWight(e.target.value)} />
                     </div>
                     <div>
                         <label className="block mb-2 mt-5">Talla</label>
-                        <input type="text" id="talla" value={talla} onChange={(e) => setTalla(e.target.value)} />
+                        <input type="text" id="size" value={size} onChange={(e) => setSize(e.target.value)} />
                     </div>
                     <div>
                         <label className="block mb-2 mt-5">Edad</label>
-                        <input type="text" id="edad" value={edad} onChange={(e) => setEdad(e.target.value)} />
+                        <input type="text" id="age" value={age} onChange={(e) => setAge(e.target.value)} />
                     </div>
                     <div>
                         <label className="block mb-2 mt-5">Bicipital</label>
@@ -269,26 +256,26 @@ return(
                         <p>Masa Grasa</p>
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {percentages.grasa && <p>{percentages.grasa}%</p>}
+                        {percentages.fat && <p>{percentages.fat}%</p>}
                     </div >
                     <div className='border-2 border-terciary border-solid'>
-                        {weight.grasamasa && <p>{weight.grasamasa}</p>}
+                        {weight.fatmass && <p>{weight.fatmass}</p>}
                     </div>
                     <div className='border-2 border-terciary border-solid'>
                         <p>Masa Osea</p>
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {percentages.porcentajeosea && <p>{percentages.porcentajeosea}%</p>}
+                        {percentages.bonepercent && <p>{percentages.bonepercent}%</p>}
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {weight.osea && <p>{weight.osea}</p>}
+                        {weight.bones && <p>{weight.bones}</p>}
                     </div>
                     
                     <div className='border-2 border-terciary border-solid'>
                         <p>Masa Residual</p>
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {percentages.porcentajeresidual && <p>{percentages.porcentajeresidual}%</p>}
+                        {percentages.residualpercent && <p>{percentages.residualpercent}%</p>}
                     </div>
                     <div className='border-2 border-terciary border-solid'>
                         {weight.residual && <p>{weight.residual}</p>}
@@ -297,10 +284,10 @@ return(
                         <p>Masa Muscular</p>
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {percentages.porcentajemuscular && <p>{percentages.porcentajemuscular}%</p>}
+                        {percentages.muscularpercent && <p>{percentages.muscularpercent}%</p>}
                     </div>
                     <div className='border-2 border-terciary border-solid'>
-                        {weight.masamuscular && <p>{weight.masamuscular}</p>}
+                        {weight.muscular && <p>{weight.muscular}</p>}
                     </div>
                 </div>
                 </div>
