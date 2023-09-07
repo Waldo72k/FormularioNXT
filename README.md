@@ -23,14 +23,14 @@ en esta se puede navegar fácilmente mediante el Menú de la izquierda,
 
 En la ventana inicio se tiene solamente un texto HOME
 
-![Inicio](https://imgur.com/VbhffFs)
+![Inicio](https://imgur.com/gallery/4iOCcgD)
 
 # Ventana Acerca de
 
 En esta se encuentra información respecto a mi empresa Moistened, la cual es de la vanguardia de riego en la industria
 agroalimentaria
 
-![Acerca de](https://imgur.com/AlqWssB)
+![Acerca de](https://imgur.com/gallery/Jm3CZqC)
 
 # Ventana Composición corporal
 
@@ -40,7 +40,7 @@ En esta se encuentra un formulario que te ayuda a calcular la composición corpo
 Esta hace la llamada de los componentes Font, Form y Chart; esto para construirse.
 Al momento que se ingresan los valores solicitados y se presiona Enviar, se pondrán los valores en la tabla y en la gráfica
 
-![Composición corporal](https://imgur.com/SSb9tNF)
+![Composición corporal](https://imgur.com/eNS3xtT)
 
 ## Pasos para realizar la instalación
 
